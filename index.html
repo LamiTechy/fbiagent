@@ -107,6 +107,59 @@
       background: #fff;
     }
 
+
+
+    @media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 15px;
+  }
+
+  .header-text .title,
+  .header-text .subtitle {
+    font-size: 15px;
+  }
+
+  .notice {
+    font-size: 13px;
+    padding: 0 5px;
+  }
+
+  /* Switch from 2-column grid to stacked layout */
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Each row: stack label above value */
+  .form-row {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #e0ddd5;
+  }
+
+  .form-row label {
+    text-align: left;
+    font-weight: bold;
+    padding: 6px 10px 2px;
+    background: #faf9f4;
+    border-right: none;
+  }
+
+  .form-row .value {
+    padding: 2px 10px 8px;
+    background: #fff;
+  }
+
+  .section {
+    margin-top: 20px;
+  }
+}
   </style>
 </head>
 <body>
