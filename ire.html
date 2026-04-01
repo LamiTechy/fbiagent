@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Complaint Referral Form</title>
+  <style>
+
+    /* ── GENERAL PAGE STYLES ── */
+    body {
+      background-color: #f5f5f0;   /* light cream background */
+      font-family: Georgia, serif;  /* classic document font */
+      margin: 0;
+      padding: 20px;
+    }
+
+    /* ── HEADER: logo + title side by side ── */
+    .header {
+      display: flex;          /* places logo and text in a row */
+      align-items: center;    /* vertically centers them */
+      gap: 20px;              /* space between logo and text */
+      padding: 20px 30px;
+      border-bottom: 1px solid #ddd;  /* line under the header */
+    }
+
+    /* ── LOGO: circular image on the left ── */
+    .logo {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;     /* makes it a circle */
+      object-fit: cover;      /* keeps image proportions */
+    }
+
+    /* ── HEADER TEXT: two lines stacked ── */
+    .header-text .title,
+    .header-text .subtitle {
+      font-size: 18px;
+      font-weight: bold;
+      color: #1a1a6e;   /* dark navy blue */
+      margin: 0;
+    }
+
+    /* ── NOTICE PARAGRAPH below the header ── */
+    .notice {
+      margin-top: 20px;
+      padding: 0 10px;
+      font-size: 14px;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* ── HIGHLIGHTED TEXT inside the notice ── */
+    .highlight {
+      background-color: yellow;   /* yellow marker effect */
+      font-weight: bold;
+      font-style: italic;
+    }
+
+    /* ── SECTION BOX: the bordered container ── */
+    .section {
+      margin-top: 30px;
+      border: 1px solid #999;   /* grey border around the whole section */
+    }
+
+    /* ── SECTION TITLE: "Victim Information" bar ── */
+    .section-title {
+      font-size: 13px;
+      font-weight: bold;
+      color: #000;
+      padding: 5px 10px;
+      /* border-bottom: 1px solid #999; */
+      background: #f0efe8;    /* slightly darker than page background */
+    }
+
+    /* ── FORM GRID: two columns — label | value ── */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      /* 220px fixed for labels, remaining space for values */
+    }
+
+    /* ── FORM ROW: each label+value pair ── */
+    .form-row {
+      display: contents;
+      /* "contents" makes children behave as direct grid items
+         so label and value each sit in their own column */
+    }
+
+    /* ── LABEL: right-aligned field name ── */
+    .form-row label {
+      text-align: right;              /* pushes text to the right */
+      padding: 6px 10px;
+      font-size: 13px;
+      color: #333;
+      /* border-bottom: 1px solid #e0ddd5; */ /* row divider line */
+     /* border-right: 1px solid #ccc; */      /* separator between label and value */
+      background: #faf9f4;
+    }
+
+    /* ── VALUE: plain text instead of an input box ── */
+    .form-row .value {
+      display: block;           /* needed so padding works on a span */
+      padding: 6px 10px;
+      font-size: 13px;
+      color: #333;
+      /* border-bottom: 1px solid #e0ddd5;    */
+      background: #fff;
+    }
+
+
+
+    @media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 15px;
+  }
+
+  .header-text .title,
+  .header-text .subtitle {
+    font-size: 10px;
+  }
+
+  .notice {
+    font-size: 13px;
+    padding: 0 5px;
+  }
+
+  /* Switch from 2-column grid to stacked layout */
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Each row: stack label above value */
+  .form-row {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #e0ddd5;
+  }
+
+  .form-row label {
+    text-align: left;
+    font-weight: bold;
+    padding: 6px 10px 2px;
+    background: #faf9f4;
+    border-right: none;
+  }
+
+  .form-row .value {
+    padding: 2px 10px 8px;
+    background: #fff;
+  }
+
+  .section {
+    margin-top: 20px;
+  }
+}
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════
+       HEADER — logo + form title
+  ══════════════════════════════ -->
+  <div class="header">
+    <!-- Replace src with your actual logo file path -->
+    <img class="logo" src="./asset/logo.jpeg" alt="IC3 Logo" />
+
+    <div class="header-text">
+      <!-- Two lines of bold navy text -->
+      <p class="title">Complaint Referral Form</p>
+      <p class="subtitle">Internet Crime Complaint Center</p>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       NOTICE — message with highlight
+  ══════════════════════════════ -->
+  <p class="notice">
+    Thank you for submitting your complaint to the IC3. Please save or print
+    a copy for your records.
+    <!-- The <span> wraps only the part that needs highlighting -->
+    <span class="highlight">This is the only time you will have to make a copy of your complaint.</span>
+  </p>
+
+
+  <!-- ══════════════════════════════
+       VICTIM INFORMATION SECTION
+  ══════════════════════════════ -->
+  <div class="section">
+
+    <!-- Title bar at the top of the box -->
+    <div class="section-title">Victim Information</div>
+
+    <!-- Grid container: every .form-row inside here
+         automatically splits into label (left) and value (right) -->
+    <div class="form-grid">
+
+      <!-- Each .form-row has:
+           - a <label> for the field name (right-aligned)
+           - a <span class="value"> for the plain text data
+           Replace the text inside .value with your real data -->
+
+      <div class="form-row">
+        <label>Name:</label>
+        <span class="value">John Williams</span>
+      </div>
+
+      <div class="form-row">
+        <label>Business Name:</label>
+        <span class="value">-------------</span>
+      </div>
+
+      <div class="form-row">
+        <label>Age:</label>
+        <span class="value">70-80</span>
+      </div>
+
+      <div class="form-row">
+        <label>Address:</label>
+        <span class="value">122 Dennison Hill Road  </span>
+      </div>
+
+      <div class="form-row">
+        <label>Address (continued):</label>
+        <span class="value">-------------</span>
+      </div>
+
+      <div class="form-row">
+        <label>Bank:</label>
+        <span class="value">TD Bank</span>
+      </div>
+
+      <div class="form-row">
+        <label>Routing Number:</label>
+        <span class="value">211370545</span>
+      </div>
+
+      <div class="form-row">
+        <label>Account Number:</label>
+        <span class="value">8253777385</span>
+      </div>
+
+      <div class="form-row">
+        <label>City:</label>
+        <span class="value">Southbridge</span>
+      </div>
+
+      <div class="form-row">
+        <label>County:</label>
+        <span class="value">Worcester</span>
+      </div>
+
+      <div class="form-row">
+        <label>Country:</label>
+        <span class="value">United States</span>
+      </div>
+
+      <div class="form-row">
+        <label>State:</label>
+        <span class="value">Massachusetts</span>
+      </div>
+
+      <div class="form-row">
+        <label>Zip Code:</label>
+        <span class="value">01550</span>
+      </div>
+
+      <div class="form-row">
+        <label>Phone Number:</label>
+        <span class="value">(774) 239-9593</span>
+      </div>
+
+      <div class="form-row">
+        <label>Email Address:</label>
+        <span class="value">jpw50@yahoo.com</span>
+      </div>
+
+      <div class="form-row">
+        <label>Business IT POC, if applicable:</label>
+        <span class="value">-------------</span>
+      </div>
+
+      <div class="form-row">
+        <label>Other Business POC, if applicable:</label>
+        <span class="value">-------------</span>
+      </div>
+
+    </div>
+    <!-- end .form-grid -->
+
+  </div>
+  <!-- end .section -->
+   <div class="section">
+
+    <!-- Title bar at the top of the box -->
+    <div class="section-title">Id</div>
+
+
+    <div class="form-grid">
+
+        <div>
+          <img padding="10px" width="200px" height="200px" src="./asset//WhatsApp Image 2026-03-30 at 22.38.31.jpeg" alt="">
+        </div>
+
+    </div>
+    <!-- end .form-grid -->
+
+  </div>
+  <div class="section">
+
+    <!-- Title bar at the top of the box -->
+    <div class="section-title">Financial Transaction(s)</div>
+
+    <!-- Grid container: every .form-row inside here
+         automatically splits into label (left) and value (right) -->
+    <div class="form-grid">
+
+      <!-- Each .form-row has:
+           - a <label> for the field name (right-aligned)
+           - a <span class="value"> for the plain text data
+           Replace the text inside .value with your real data -->
+
+        <div class="form-row">
+          <label>Transaction Type:</label>
+          <span class="value">Gift Card </span>
+        </div>
+
+    </div>
+    <!-- end .form-grid -->
+
+  </div>
+  <!-- end .section -->
+  <div class="section">
+
+    <!-- Title bar at the top of the box -->
+    <div class="section-title">Evidence(s)</div>
+
+
+    <div class="form-grid">
+
+
+        <!-- <div class="form-row">
+          <label>Transaction Type</label>
+          <span class="value">Gift Card </span>
+        </div> -->
+        <div>
+          <img padding="10px" width="200px" height="200px" src="./asset/WhatsApp Image 2026-03-11 at 09.39.09.jpeg" alt="">
+        </div>
+
+    </div>
+    <!-- end .form-grid -->
+
+  </div>
+  <!-- end .section -->
+  <div class="section">
+  
+ 
+
+    <!-- Title bar at the top of the box -->
+    <div class="section-title">Penalty</div>
+
+
+    <div class="form-grid">
+
+
+        <div class="form-row">
+          <label>Amount:</label>
+          <span class="value">$15,000.00</span>
+        </div>
+        <div class="form-row">
+          <label>Due Date:</label>
+          <span class="value">On or Before August 1, 2026</span>
+        </div>
+        
+
+    </div>
+    <!-- end .form-grid -->
+
+  </div>
+  <div class="section">
+
+    <!-- Title bar at the top of the box -->
+    <!-- <div class="section-title">Warning</div> -->
+
+
+    <div class="form-grid">
+
+
+        <div class="form-row">
+          <label>Note:</label>
+          <span class="value">Once Payment Is Made Your Case Will Be Cleared From The Website</span>
+        </div>
+        
+        
+
+    </div>
+    <!-- end .form-grid -->
+
+  </div>
+  <!-- end .section -->
+
+</body>
+</html>
